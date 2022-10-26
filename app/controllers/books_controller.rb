@@ -1,7 +1,8 @@
 class BooksController < ApplicationController
   before_action :find_book, except: %i[index new create]
+
   def index
-    @books = Book.all
+    @books = Book.where(available: true).where.not(user: current_user)
   end
 
   def show; end

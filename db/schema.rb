@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_210314) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_25_232420) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_210314) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_books_on_user_id"
+  end
+
+  create_table "trades", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "return_date"
+    t.datetime "trade_date"
+    t.index ["book_id"], name: "index_trades_on_book_id"
+    t.index ["user_id"], name: "index_trades_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,4 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_210314) do
   end
 
   add_foreign_key "books", "users"
+  add_foreign_key "trades", "books"
+  add_foreign_key "trades", "users"
 end

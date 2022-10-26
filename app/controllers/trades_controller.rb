@@ -1,18 +1,31 @@
 class TradesController < ApplicationController
-  #todo def index pra mostrar quantas vezes o livro ja foi emprestado (e assim criar-se um ranking com os livros mais populares)
+
+  def index
+    @trades = Trade.where(user_id: current_user.id)
+  end
 
   def new
-    #todo colocar este form dentro da show do book
+    #criar este formulario na show de book (nome e endereço e data de retorno)
     @trade = Trade.new
   end
 
   def create
     book = Book.find(params[:book_id])
     @trade = Trade.new(trades_params)
-    redirect_to book_path(book)
+    if @trade.save
+      redirect_to book_path(book)
+      # ou redirecionar para o index de trades deste usuario
+      book.available = false
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
-    #todo do we needs a def destroy here? se eu como user quiser cance;ar o emprestimo
+  def destroy
+    @trade = Trade.find(params[:id])
+    @trade.destroy
+    redirect_to books_path, status: :see_other
+  end
 
   private
 
