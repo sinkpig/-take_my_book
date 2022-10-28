@@ -1,1 +1,14 @@
-<h1>edit de book</h1>
+<div class="container">
+
+  <h1>edit de book</h1>
+
+  <%= simple_form_for @book do |f| %>
+    <%= f.input :title %>
+    <%= f.input :author %>
+    <%= f.input :year %>
+    <%= f.input :available, as: :boolean %>
+    <%= f.input :genre %>
+
+    <%= f.button :submit, class: 'btn btn-primary'%>
+  <% end %>
+</div>

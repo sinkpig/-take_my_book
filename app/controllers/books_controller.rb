@@ -20,11 +20,18 @@ class BooksController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    find_book
+  end
 
   def update
     @book.update(book_params)
-    redirect_to book_path(@book)
+    if @book.save!
+      redirect_to book_path(@book)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+
   end
 
   def destroy
