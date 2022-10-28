@@ -5,6 +5,7 @@ class TradesController < ApplicationController
   end
 
   def new
+    @book = Book.find(params[:book_id])
     #criar este formulario na show de book (nome e endereço e data de retorno)
     @trade = Trade.new
   end

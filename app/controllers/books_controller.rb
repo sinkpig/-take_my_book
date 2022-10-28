@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :find_book, except: %i[index new create]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     @books = Book.where(available: true).where.not(user: current_user)
