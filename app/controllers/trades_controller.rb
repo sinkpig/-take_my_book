@@ -5,7 +5,7 @@ class TradesController < ApplicationController
   end
 
   def new
-    @book = Book.find(params[:book_id])
+    # @book = Book.find(params[:book_id])
     #criar este formulario na show de book (nome e endereço e data de retorno)
     @trade = Trade.new
   end
@@ -30,7 +30,7 @@ class TradesController < ApplicationController
 
   private
 
-  def trade_params
-    params.require(:trade).permit(:user_id, :book_id)
+  def trades_params
+    params.require(:trade).permit(:user_id, :book_id, :return_date, :trade_date)
   end
 end

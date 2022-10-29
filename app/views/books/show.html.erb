@@ -6,11 +6,6 @@
 <h5>This book belongs to: <%= @book.user.name %></h5>
 
 <p>Would you like to borrow it?</p>
-<%# <%= link_to "Yes", ?? procurar aula de stimulus - botao com event listener para escutar o click e desabilitar o hiden - div no html tera um hidden=true %>
-<%= simple_form_for [@book, @trade] do |f| %>
-  <%= f.input :trade_date %>
-  <%= f.input :return_date %>
-  <%= f.button :submit %>
-<% end %>
 
+<%= link_to "Yes", new_trade_path %>
 <%= link_to "No, take me back to my options", books_path %>
