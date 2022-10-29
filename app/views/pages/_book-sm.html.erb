@@ -1,0 +1,18 @@
+<div class="col-lg-4 col-md-6 mb-3">
+  <div class="card h-100 shadow-sm border-0 rounded-0">
+    <%# <%= link_to "Book details", book_path(book), class: "btn btn-light rounded-0 d-none position-absolute start-50 translate-middle", style: "top: 30% !important;" %>
+    <img src="https://source.unsplash.com/random/300x300/?<%= book.genre %>" class="book card-img-top" height="300px" width="300px">
+    <div class="card-body">
+      <span class="badge rounded-pill text-bg-success text-white position-absolute" style="top: 15px"><%= book.genre.capitalize %></span>
+      <h5 class="card-title fw-bold"><%= book.title %> <small class="fw-lighter fs-6 text-muted">(<%= book.year %>)</small></h5>
+      <h6 class="card-subtitle h5 mb-2">By <%= book.author %></h6>
+    </div>
+    <div class="card-footer text-center">
+      <%= link_to book_path(book), class: "btn btn-warning rounded-0 d-block w-100 stretched-link text-white mb-2" do %>
+        <i class="fa-solid fa-plus me-2"></i>
+        Book details
+      <% end %>
+      <small class="card-text text-muted">Offered by: <%= book.user.name %></small>
+    </div>
+  </div>
+</div>

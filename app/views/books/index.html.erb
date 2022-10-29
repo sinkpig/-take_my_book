@@ -1,6 +1,6 @@
 <div class="container my-5">
   <h1 class="mb-3"><span><%= @books.count %></span> Book<%= "s" if @books.count >= 1 %> ready to be borrowed</h1>
-  <div class="row justify-content-around">
+  <div class="row justify-content-center">
     <% @books.each do |book| %>
       <%= render 'book', book: book %>
     <% end %>
