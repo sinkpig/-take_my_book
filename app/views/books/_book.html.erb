@@ -1,4 +1,4 @@
-<div class="col-3 mb-3">
+<div class="col-xl-3 col-lg-4 col-md-6 mb-3">
   <div class="card h-100 shadow-sm border-0 rounded-0">
     <%# <%= link_to "Book details", book_path(book), class: "btn btn-light rounded-0 d-none position-absolute start-50 translate-middle", style: "top: 30% !important;" %>
     <img src="https://source.unsplash.com/random/300x300/?<%= book.genre %>" class="book card-img-top" height="300px" width="300px">
@@ -8,8 +8,11 @@
       <h6 class="card-subtitle h5 mb-2">By <%= book.author %></h6>
     </div>
     <div class="card-footer text-center">
-      <a href="#" class="btn btn-warning rounded-0 d-block w-100 text-white mb-2"><i class="fa-solid fa-plus me-2"></i>Book details</a>
-      <small class="card-text text-muted">Offered by: <a href="#"><%= book.user.name %></a></small>
+      <%= link_to book_path(book), class: "btn btn-warning rounded-0 d-block w-100 stretched-link text-white mb-2" do %>
+        <i class="fa-solid fa-plus me-2"></i>
+        Book details
+      <% end %>
+      <small class="card-text text-muted">Offered by: <%= book.user.name %></small>
     </div>
   </div>
 </div>
