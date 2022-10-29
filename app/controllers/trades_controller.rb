@@ -4,21 +4,18 @@ class TradesController < ApplicationController
     @trades = Trade.where(user_id: current_user.id)
   end
 
-  def new
-    # @book = Book.find(params[:book_id])
-    #criar este formulario na show de book (nome e endereço e data de retorno)
-    @trade = Trade.new
-  end
-
   def create
-    book = Book.find(params[:book_id])
+    @book = Book.find(params[:book_id])
     @trade = Trade.new(trades_params)
+    @trade.book = @book
+    @trade.user = current_user
     if @trade.save
-      redirect_to book_path(book)
+      @book.available = false
+      @book.save!
+      redirect_to book_path(@book)
       # ou redirecionar para o index de trades deste usuario
-      book.available = false
     else
-      render :new, status: :unprocessable_entity
+      render "books/show", status: :unprocessable_entity
     end
   end
 
@@ -31,6 +28,6 @@ class TradesController < ApplicationController
   private
 
   def trades_params
-    params.require(:trade).permit(:user_id, :book_id, :return_date, :trade_date)
+    params.require(:trade).permit(:return_date, :trade_date)
   end
 end
