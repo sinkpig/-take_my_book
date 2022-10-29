@@ -1,4 +1,74 @@
-<h1>profile page</h1>
-<% @trades.each do |t| %>
-<%= t.id  %>
-<% end %>
+<div class="container my-5">
+  <h1 class="mb-3"><%= current_user.name %>'s Profile
+    <span class="text-muted fs-5"> Not you? <%= link_to "Sign out", destroy_user_session_path, class: "text-warning" %></span>
+  </h1>
+  <div class="row g-0 justify-content-center">
+    <div class="col-lg-3 bg-white border-end">
+      <div class="card border-0">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <h5 class="card-title">Account Details</h5>
+            <p class="card-text text-muted">
+              <span class="fw-bold">Name: </span>
+              <%= current_user.name %>
+            </p>
+            <p class="card-text text-muted">
+              <span class="fw-bold">Email: </span>
+              <%= current_user.email %>
+            </p>
+            <p class="card-text text-muted">
+              <span class="fw-bold">Address: </span>
+              <%= current_user.address %>
+            </p>
+            <%= link_to "Edit account", edit_user_registration_path, class: "btn btn-outline-warning d-block w-100" %>
+          </li>
+          <li class="list-group-item">
+            <h5 class="card-title">Account Stats</h5>
+            <p class="card-text text-muted">
+              <span class="fw-bold">User since: </span>
+              <%= current_user.created_at.strftime("%d %b %Y") %>
+            </p>
+            <p class="card-text text-muted">
+              <span class="fw-bold">Books offered: </span>
+              <%= current_user.books.count %>
+            </p>
+            <p class="card-text text-muted">
+              <span class="fw-bold">Number of trades: </span>
+              <%= @trades.count %>
+            </p>
+          </li>
+          <li class="list-group-item">
+            <%= link_to "Delete account", cancel_user_registration_path, class: "btn btn-outline-danger d-block w-100" %>
+            <%#= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-outline-danger d-block w-100" %>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-9 p-3 bg-white">
+      <h3>Your trades</h3>
+      <% if @trades.count == 0 %>
+        <p>No trades yet</p>
+      <% else %>
+        <% @trades.each do |t| %>
+          <%= t.id  %>
+        <% end %>
+      <% end %>
+      <h3>Your books
+        <% if current_user.books.count > 0 %>
+          <%= link_to "Offer another book", new_book_path, class: "btn btn-link text-warning" %>
+        <% end %>
+      </h3>
+      <% if current_user.books.count == 0 %>
+        <p>No books offered yet
+          <%= link_to "Offer a book", new_book_path, class: "btn btn-link text-warning" %>
+        </p>
+      <% else %>
+        <div class="row justify-content-center">
+          <% current_user.books.each do |book| %>
+            <%= render 'book-sm', book: book %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
