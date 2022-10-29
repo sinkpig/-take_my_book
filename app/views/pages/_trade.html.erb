@@ -1,0 +1,14 @@
+<div class="col-4">
+  <div class="card border-0 shadow-sm h-100 rounded-0">
+    <img src="https://source.unsplash.com/random/300x300/?<%= trade.book.genre %>" class="book card-img-top" height="300px" width="300px">
+    <div class="card-body">
+      <h5 class="card-title fw-bold"><%= trade.book.title %> <small class="fw-lighter fs-6 text-muted">(<%= trade.book.year %>)</small></h5>
+      <h6 class="card-subtitle h5 mb-2">By <%= trade.book.author %></h6>
+      <p class="card-text"><span class="fw-bold text-muted">Lent on: </span><%= trade.trade_date.strftime("%d %b %Y") %></p>
+      <p class="card-text"><span class="fw-bold text-muted">Return by: </span><%= trade.return_date.strftime("%d %b %Y") %></p>
+    </div>
+    <div class="card-footer text-center">
+      <small class="card-text text-muted">Offered by: <%= trade.book.user.name %></small>
+    </div>
+  </div>
+</div>

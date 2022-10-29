@@ -49,12 +49,11 @@
       <% if @trades.count == 0 %>
         <p>No trades yet</p>
       <% else %>
-        <% @trades.each do |t| %>
-          <%= t.book.title %>
-          <%= t.trade_date.strftime("%d %b %Y") %>
-          <%= t.return_date.strftime("%d %b %Y") %>
-          <%= t.book.user.name %>
-        <% end %>
+        <div class="row justify-content-center">
+          <% @trades.each do |trade| %>
+            <%= render "trade", trade: trade %>
+          <% end %>
+        </div>
       <% end %>
       <h3>Your books
         <% if current_user.books.count > 0 %>
