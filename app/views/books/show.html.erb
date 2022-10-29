@@ -6,7 +6,8 @@
 <h5>This book belongs to: <%= @book.user.name %></h5>
 
 <% if current_user == @book.user %>
-  <%= link_to "Edit this book", edit_book_path(@book) %>
+  <%= link_to "Edit informations", edit_book_path(@book) %>
+  <%= link_to "Delete this book", profile_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }%>
 <% else %>
   <% if @book.available %>
     <p>Would you like to borrow it?</p>
