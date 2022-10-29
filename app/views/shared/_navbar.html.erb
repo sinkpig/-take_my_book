@@ -1,33 +1,49 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+    <%= link_to "#", class: "navbar-brand", style: "flex-grow: 2;" do %>
+      <%# <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+      <h2>
+        <em class="text-muted">Take my</em>
+        <span class="fw-bold bg-dark text-white">&ensp;<i class="fa-solid fa-book-open me-2"></i>Book&ensp;</span>
+      </h2>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent" style="flex-grow: 2;">
+      <ul class="navbar-nav align-items-center justify-content-between w-100">
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
-          </li>
           <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+            <form class="input-group" role="search">
+              <input class="form-control" type="search" placeholder="Search for books!" aria-label="Search">
+              <button class="btn btn-outline-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
           </li>
           <li class="nav-item dropdown">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%# <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <a class="nav-link dropdown-toggle pe-auto" style="cursor: pointer;" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              Welcome, <span class="fw-bold"><%= current_user.name %></span>
+            </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <%= link_to "My profile", profile_path, class: "dropdown-item" %>
+              <%= link_to "Add a new book", new_book_path, class: "dropdown-item" %>
+              <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item text-danger" do %>
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                Log out
+              <% end %>
             </div>
           </li>
         <% else %>
+          <li class="nav-item ms-auto">
+            <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-outline-warning" %>
+          </li>
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            <span class="nav-link">OR</span>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
           </li>
         <% end %>
       </ul>
