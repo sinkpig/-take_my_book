@@ -1,1 +1,9 @@
 <h1>new de books</h1>
+
+<%= simple_form_for @books do |f| %>
+  <%= f.input :title %>
+  <%= f.input :author %>
+  <%= f.input :year %>
+  <%= f.input :genre %>
+  <%= f.submit, class: "btn btn-primary" %>
+<% end %>
