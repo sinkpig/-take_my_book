@@ -5,7 +5,17 @@
 <h5>Genre: <%= @book.genre.capitalize %></h5>
 <h5>This book belongs to: <%= @book.user.name %></h5>
 
-<p>Would you like to borrow it?</p>
+<% if current_user == @book.user %>
+  <%= link_to "Edit this book", edit_book_path(@book) %>
+<% else %>
+  <% if @book.available %>
+    <p>Would you like to borrow it?</p>
+    <%= simple_form_for [@book, @trade] do |f| %>
+      <%= f.input :trade_date, as: :date %>
+      <%= f.input :return_date, as: :date %>
+      <%= f.button :submit %>
+    <% end %>
+  <% end %>
 
-<%= link_to "Yes", new_trade_path %>
-<%= link_to "No, take me back to my options", books_path %>
+  <%= link_to "Take me back to my options", books_path %>
+<% end %>
