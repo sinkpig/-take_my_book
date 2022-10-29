@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def home
     # TODO: Popular book suggestions by reviews
-    @books = Book.last(4)
+    @books = Book.last(4).reverse
   end
 
   def profile
