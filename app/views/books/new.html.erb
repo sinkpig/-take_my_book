@@ -4,6 +4,6 @@
   <%= f.input :title %>
   <%= f.input :author %>
   <%= f.input :year %>
-  <%= f.input :genre %>
+  <%= f.input :genre, collection: %w[fantasy dystopian adventure romance horror thriller children] %>
   <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
