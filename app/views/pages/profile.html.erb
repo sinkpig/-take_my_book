@@ -44,17 +44,17 @@
       </div>
     </div>
     <div class="col-lg-9 p-3 bg-white">
-      <h3>Your trades</h3>
+      <h3 class="mb-3">Your trades</h3>
       <% if @trades.count == 0 %>
         <p>No trades yet</p>
       <% else %>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-5">
           <% @trades.each do |trade| %>
             <%= render "trade", trade: trade %>
           <% end %>
         </div>
       <% end %>
-      <h3>Your books
+      <h3 class="mb-3">Your books
         <% if current_user.books.count > 0 %>
           <%= link_to "Offer another book", new_book_path, class: "btn btn-link text-warning" %>
         <% end %>
