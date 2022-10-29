@@ -1,5 +1,18 @@
-<h1>Welcome to Take My Book</h1>
-
-<h3>What would you like to do now?</h3>
-<%= link_to "Borrow a book", books_path %>
-<%= link_to "Lend a book", new_book_path %>
+<div class="p-5 mb-4" style="background-image: linear-gradient(180deg, rgba(47,8,60,0.5) 0%, rgba(82,56,17,0.5) 100%), url('https://images.unsplash.com/photo-1602722053020-af31042989d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');">
+  <div class="container-fluid text-center text-white py-5">
+    <h1 class="display-5 fw-bold">Take My Book</h1>
+    <p class="col-md-8 fs-4 w-100">A marketplace for trading and lending books!<br>How would you like to start?</p>
+    <%= link_to "Borrow a book", books_path, class: "btn btn-warning" %>
+    <%= link_to "Lend a book", new_book_path, class: "btn btn-light" %>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2>Newest books</h2>
+    </div>
+    <% @books.each do |book| %>
+      <%= render "books/book", book: book %>
+    <% end %>
+  </div>
+</div>
