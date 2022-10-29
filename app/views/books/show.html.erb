@@ -1,1 +1,11 @@
-<h1>sho de book</h1>
+<h1><%= @book.title %></h1>
+<%# mostrar a imagem do livro %>
+<h5>Author: <%= @book.author.capitalize %></h5>
+<p><%= @book.year %><p>
+<h5>Genre: <%= @book.genre.capitalize %></h5>
+<h5>This book belongs to: <%= @book.user.name %></h5>
+
+<p>Would you like to borrow it?</p>
+
+<%= link_to "Yes", new_trade_path %>
+<%= link_to "No, take me back to my options", books_path %>
