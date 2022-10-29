@@ -26,12 +26,11 @@ class BooksController < ApplicationController
 
   def update
     @book.update(book_params)
-    if @book.save!
+    if @book.save
       redirect_to book_path(@book)
     else
       render :edit, status: :unprocessable_entity
     end
-
   end
 
   def destroy
