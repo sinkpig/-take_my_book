@@ -3,7 +3,14 @@ class BooksController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @books = Book.where(available: true).where.not(user: current_user)
+    if params[:query].present?
+      @books = Book.search_by_attributes(params[:query])
+                   .where(available: true)
+                   .where.not(user: current_user)
+    else
+      @books = Book.where(available: true)
+                   .where.not(user: current_user)
+    end
   end
 
   def show

@@ -1,22 +1,39 @@
-<h1><%= @book.title %></h1>
-<%# mostrar a imagem do livro %>
-<h5>Author: <%= @book.author.capitalize %></h5>
-<p><%= @book.year %><p>
-<h5>Genre: <%= @book.genre.capitalize %></h5>
-<h5>This book belongs to: <%= @book.user.name %></h5>
-
-<% if current_user == @book.user %>
-  <%= link_to "Edit informations", edit_book_path(@book) %>
-  <%= link_to "Delete this book", profile_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }%>
-<% else %>
-  <% if @book.available %>
-    <p>Would you like to borrow it?</p>
-    <%= simple_form_for [@book, @trade] do |f| %>
-      <%= f.input :trade_date, as: :date %>
-      <%= f.input :return_date, as: :date %>
-      <%= f.button :submit %>
-    <% end %>
+<div class="container my-5">
+  <%= link_to books_path, class: "text-decoration-none text-warning" do %>
+    <i class="fa-solid fa-arrow-left-long"></i>
+    Return
   <% end %>
-
-  <%= link_to "Take me back to my options", books_path %>
-<% end %>
+  <div class="d-flex justify-content-center">
+    <div class="flex-shrink-1">
+      <img src="https://source.unsplash.com/random/300x300/?<%= @book.genre %>" class="img-fluid" height="300px" width="300px">
+      <p class="d-block text-muted text-center">This book belongs to <span class="fw-bold"><%= @book.user.name %></span></p>
+    </div>
+    <div class="ps-5" style="width: 600px;">
+      <h1><%= @book.title %>
+        <span class="fs-5">(<%= @book.year %>)<span>
+      </h1>
+      <%# mostrar a imagem do livro %>
+      <h5>By
+        <span class="fw-bold"><%= @book.author.capitalize %></span>
+        <span class="badge rounded-pill text-bg-success text-white"><%= @book.genre.capitalize %></span>
+      </h5>
+      <% if current_user == @book.user %>
+        <%= link_to "Edit informations", edit_book_path(@book) %>
+        <%= link_to "Delete this book", profile_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }%>
+      <% else %>
+        <% if @book.available %>
+          <div class="card bg-light border-0 rounded-0 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Would you like to borrow it?</h5>
+              <%= simple_form_for [@book, @trade] do |f| %>
+                <%= f.input :trade_date, as: :date %>
+                <%= f.input :return_date, as: :date %>
+                <%= f.button :submit, class: "btn btn-warning d-block w-100" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
