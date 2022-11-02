@@ -1,9 +1,2 @@
-<h1>new de books</h1>
-
-<%= simple_form_for @book do |f| %>
-  <%= f.input :title %>
-  <%= f.input :author %>
-  <%= f.input :year %>
-  <%= f.input :genre, collection: %w[fantasy dystopian adventure romance horror thriller children] %>
-  <%= f.submit "Submit", class: "btn btn-primary" %>
-<% end %>
+<h1>Offer a book</h1>
+<%= render "form" %>

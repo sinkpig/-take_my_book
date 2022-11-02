@@ -1,0 +1,8 @@
+<%= simple_form_for @book do |f| %>
+  <%= f.input :title %>
+  <%= f.input :author %>
+  <%= f.input :year %>
+  <%= f.input :genre, collection: %w[fantasy dystopian adventure romance horror thriller children] %>
+  <%= f.input :photo, as: :file %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>
