@@ -1,7 +1,10 @@
 <div class="col-lg-4 col-md-6 mb-3">
   <div class="card h-100 shadow-sm border-0 rounded-0">
-    <%# <%= link_to "Book details", book_path(book), class: "btn btn-light rounded-0 d-none position-absolute start-50 translate-middle", style: "top: 30% !important;" %>
-    <img src="https://source.unsplash.com/random/300x300/?<%= book.genre %>" class="book card-img-top" height="300px" width="300px">
+    <% if book.photo.attached? %>
+      <%= cl_image_tag book.photo.key, class: "book card-img-top", crop: :fill %>
+    <% else %>
+      <%= image_tag "livro.jpeg", class: "book card-img-top" %>
+    <% end %>
     <div class="card-body">
       <span class="badge rounded-pill text-bg-success text-white position-absolute" style="top: 15px"><%= book.genre.capitalize %></span>
       <h5 class="card-title fw-bold"><%= book.title %> <small class="fw-lighter fs-6 text-muted">(<%= book.year %>)</small></h5>

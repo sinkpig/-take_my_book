@@ -1,14 +1,6 @@
 <div class="container">
 
-  <h1>edit de book</h1>
+  <h1>Edit your book offert</h1>
+  <%= render 'form' %>
 
-  <%= simple_form_for @book do |f| %>
-    <%= f.input :title %>
-    <%= f.input :author %>
-    <%= f.input :year %>
-    <%= f.input :available, as: :boolean %>
-    <%= f.input :genre, collection: %w[fantasy dystopian adventure romance horror thriller children] %>
-
-    <%= f.button :submit, class: 'btn btn-primary'%>
-  <% end %>
 </div>

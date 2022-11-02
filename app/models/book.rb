@@ -1,5 +1,6 @@
 class Book < ApplicationRecord
   belongs_to :user
+  has_one_attached :photo
 
   validates :title, :author, :year, :genre, presence: true
   validates :year, numericality: { only_integer: true }
