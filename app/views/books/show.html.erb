@@ -1,25 +1,35 @@
 <div class="container my-5">
-  <%= link_to books_path, class: "text-decoration-none text-warning" do %>
+  <%= link_to books_path, class: "text-decoration-none text-muted" do %>
     <i class="fa-solid fa-arrow-left-long"></i>
     Return
   <% end %>
-  <div class="d-flex justify-content-center">
+  <div class="d-md-flex justify-content-center">
     <div class="flex-shrink-1">
-      <img src="https://source.unsplash.com/random/300x300/?<%= @book.genre %>" class="img-fluid" height="300px" width="300px">
-      <p class="d-block text-muted text-center">This book belongs to <span class="fw-bold"><%= @book.user.name %></span></p>
+      <img src="https://source.unsplash.com/random/300x300/?<%= @book.genre %>" class="img-fluid d-block mx-auto" height="300px" width="300px">
+      <% if current_user.name == @book.user.name %>
+        <p class="d-block text-muted text-center">This book belongs to <span class="fw-bold">you</span></p>
+      <% else %>
+        <p class="d-block text-muted text-center">This book belongs to <span class="fw-bold"><%= @book.user.name %></span></p>
+      <% end %>
     </div>
-    <div class="ps-5" style="width: 600px;">
+    <div class="ps-md-5" style="width: 600px;">
+      <span class="badge rounded-pill text-bg-success text-white"><%= @book.genre.capitalize %></span>
       <h1><%= @book.title %>
         <span class="fs-5">(<%= @book.year %>)<span>
       </h1>
       <%# mostrar a imagem do livro %>
-      <h5>By
+      <h5 class="mb-4">By
         <span class="fw-bold"><%= @book.author.capitalize %></span>
-        <span class="badge rounded-pill text-bg-success text-white"><%= @book.genre.capitalize %></span>
       </h5>
       <% if current_user == @book.user %>
-        <%= link_to "Edit informations", edit_book_path(@book) %>
-        <%= link_to "Delete this book", profile_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }%>
+        <%= link_to edit_book_path(@book), class: "btn btn-outline-secondary me-3" do %>
+          <i class="fa-solid fa-pen-to-square me-2"></i>
+          Edit offer
+        <% end %>
+        <%= link_to profile_path, class: "btn btn-outline-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+          <i class="fa-solid fa-trash-can me"></i>
+          Delete offer
+        <% end %>
       <% else %>
         <% if @book.available %>
           <div class="card bg-light border-0 rounded-0 shadow-sm">
