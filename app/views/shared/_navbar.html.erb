@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm bg-dark navbar-lewagon">
   <div class="container-fluid">
     <%= link_to "/", class: "navbar-brand", style: "flex-grow: 2;" do %>
       <%# <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
@@ -18,12 +18,14 @@
           <li class="nav-item">
             <%= form_with url: books_path, method: :get, class: "input-group" do %>
               <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Find a book" %>
-              <%= submit_tag "Search", class: "btn btn-primary" %>
+              <%= button_tag class: "btn btn-dark", style: "border: red 1px solid;" do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
             <% end %>
           </li>
           <li class="nav-item dropdown">
             <%# <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <a class="nav-link dropdown-toggle pe-auto" style="cursor: pointer;" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+            <a class="nav-link dropdown-toggle pe-auto text-light" style="cursor: pointer;" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
               Welcome, <span class="fw-bold"><%= current_user.name %></span>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
