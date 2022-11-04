@@ -8,5 +8,7 @@ class PagesController < ApplicationController
 
   def profile
     @trades = current_user.trades
+    @available_books = current_user.books.where(available: true)
+    @unavailable_books = current_user.books.where(available: false)
   end
 end

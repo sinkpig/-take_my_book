@@ -65,8 +65,23 @@
         </p>
       <% else %>
         <div class="row justify-content-center">
-          <% current_user.books.each do |book| %>
+          <h4>Unavailable books:</h4>
+          <% if @unavailable_books.count == 0 %>
+            <p>No books were found</p>
+          <% else %>
+            <% @unavailable_books.each do |book| %>
             <%= render 'book-sm', book: book %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="row justify-content-center">
+          <h4>Available books:</h4>
+          <% if @available_books.count == 0 %>
+            <p>No books were found</p>
+          <% else %>
+            <% @available_books.each do |book| %>
+            <%= render 'book-sm', book: book %>
+            <% end %>
           <% end %>
         </div>
       <% end %>
