@@ -1,7 +1,7 @@
        <div class="card bg-light border-0 rounded-0 shadow-sm">
             <div class="card-body">
               <h5 class="card-title">Would you like to borrow it?</h5>
-              <%= simple_form_for [@book, @trade] do |f| %>
+              <%= simple_form_for [@book, @trade], data: {turbo: false} do |f| %>
                 <%= f.input :trade_date, as: :date %>
                 <%= f.input :return_date, as: :date %>
                 <%= f.button :submit, class: "btn btn-warning d-block w-100" %>
