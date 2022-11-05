@@ -15,11 +15,12 @@ class BooksController < ApplicationController
 
   def show
     @trade = Trade.new
+    @review = Review.new(book: @book)
 
-    @markers = [ {
-        lat: @book.user.latitude,
-        lng: @book.user.longitude
-      } ]
+    @markers = [{
+      lat: @book.user.latitude,
+      lng: @book.user.longitude
+    }]
   end
 
   def new

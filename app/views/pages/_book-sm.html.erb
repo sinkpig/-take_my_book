@@ -9,7 +9,7 @@
     <div class="card-body">
       <span class="badge rounded-pill text-bg-success text-white position-absolute" style="top: 15px"><%= book.genre.capitalize %></span>
       <h5 class="card-title fw-bold"><%= book.title %> <small class="fw-lighter fs-6 text-muted">(<%= book.year %>)</small></h5>
-      <p class="card-subtitle mb-2">By <%= book.author %></p>
+      <p class="card-subtitle mb-2">Author: <%= book.author %></p>
     </div>
     <div class="card-footer bg-light text-center">
       <%= link_to book_path(book), class: "btn btn-outline-danger rounded-0 d-block w-100 stretched-link mb-2" do %>
