@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   has_many :books, dependent: :destroy
   has_many :trades
+  has_many :reviews, dependent: :destroy
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
