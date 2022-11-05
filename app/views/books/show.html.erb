@@ -7,9 +7,9 @@
   <div class="row justify-content-center mb-3">
     <div class="col-md-4">
       <% if @book.photo.attached? %>
-        <%= cl_image_tag @book.photo.key, class: "img-fluid d-block mx-auto", height: "300px", width: "300px", crop: :fill %>
+        <%= cl_image_tag @book.photo.key, class: "book card-img-top", crop: :fill %>
       <% else %>
-        <%= image_tag "livro.jpeg", class: "img-fluid d-block mx-auto", height: "300px", width: "300px" %>
+        <%= image_tag "livro.jpeg", class: "book card-img-top" %>
       <% end %>
       <% if current_user && current_user.name == @book.user.name %>
 
