@@ -3,6 +3,7 @@
     <i class="fa-solid fa-arrow-left-long"></i>
     Return
   <% end %>
+
   <div class="row justify-content-center mb-3">
     <div class="col-md-4">
       <% if @book.photo.attached? %>
@@ -11,6 +12,7 @@
         <%= image_tag "livro.jpeg", class: "img-fluid d-block mx-auto", height: "300px", width: "300px" %>
       <% end %>
       <% if current_user && current_user.name == @book.user.name %>
+
         <p class="d-block text-muted text-center">This book belongs to <span class="fw-bold">you</span></p>
       <% else %>
         <p class="d-block text-muted text-center">This book belongs to <span class="fw-bold"><%= @book.user.name %></span></p>
@@ -24,14 +26,22 @@
       <p class="mb-4">By
         <span class="fw-bold"><%= @book.author.capitalize %></span>
       </p>
+
       <% if current_user == @book.user %>
-        <%= link_to edit_book_path(@book), class: "btn btn-outline-secondary me-3" do %>
-          <i class="fa-solid fa-pen-to-square me-2"></i>
+        <%= link_to edit_book_path(@book), class: "btn btn-outline-secondary me-2" do %>
+          <i class="fa-solid fa-pen-to-square"></i>
           Edit offer
         <% end %>
-        <%= link_to profile_path, class: "btn btn-outline-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-          <i class="fa-solid fa-trash-can me"></i>
+        <%= link_to profile_path, class: "btn btn-outline-danger me-2", data: {turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+          <i class="fa-solid fa-trash-can"></i>
           Delete offer
+        <% end %>
+        <br>
+        <% unless @book.available? %>
+          <%= link_to change_availability_to_true_book_path(@book), class: "btn btn-outline-success mt-3", data: {turbo_method: :patch } do %>
+            <i class="fa-regular fa-circle-check"></i>
+            Make available
+          <% end %>
         <% end %>
       <% else %>
         <% if @book.available %>

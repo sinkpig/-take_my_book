@@ -54,6 +54,12 @@ class BooksController < ApplicationController
     redirect_to books_path, status: :see_other
   end
 
+  def change_availability_to_true
+    @book.available = true
+    @book.save!
+    redirect_to profile_path
+  end
+
   private
 
   def find_book
