@@ -1,9 +1,9 @@
 <div class="container my-5">
-  <h1 class="mb-3"><%= current_user.name %>'s Profile
-    <span class="text-muted fs-5"> Not you? <%= link_to "Sign out", destroy_user_session_path, class: "text-warning" %></span>
-  </h1>
-  
-  <div class="row g-0 justify-content-center">
+
+  <h1 class="d-inline mb-3"><%= current_user.name %>'s Profile</h1>
+  <span class="text-muted fs-6 ms-2">Not you? <%= link_to "Sign out", destroy_user_session_path, class: "text-danger" %></span>
+  <div class="row g-0 justify-content-center mt-3">
+
     <div class="col-lg-3 bg-white border-end">
       <div class="card border-0">
         <ul class="list-group list-group-flush">
@@ -21,7 +21,7 @@
               <span class="fw-bold">Address: </span>
               <%= current_user.address %>
             </p>
-            <%= link_to "Edit account", edit_user_registration_path, class: "btn btn-outline-warning d-block w-100" %>
+            <%= link_to "Edit account", edit_user_registration_path, class: "btn btn-outline-danger d-block w-100" %>
           </li>
           <li class="list-group-item">
             <h5 class="card-title">Account Stats</h5>
