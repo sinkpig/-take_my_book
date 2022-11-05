@@ -1,10 +1,9 @@
 <div class="navbar navbar-expand-sm bg-dark navbar-lewagon">
   <div class="container-fluid">
     <%= link_to "/", class: "navbar-brand", style: "flex-grow: 2;" do %>
-      <%# <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-      <h2>
-        <em class="text-muted">Take my</em>
-        <span class="fw-bold bg-dark text-white">&ensp;<i class="fa-solid fa-book-open me-2"></i>Book&ensp;</span>
+      <h2 class="text-white">
+        <span class="text-muted"><i class="fa-solid fa-book-open me-2"></i>Take my</span>
+        Book
       </h2>
     <% end %>
 
@@ -17,8 +16,8 @@
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= form_with url: books_path, method: :get, class: "input-group" do %>
-              <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Find a book" %>
-              <%= button_tag class: "btn btn-dark", style: "border: red 1px solid;" do %>
+              <%= text_field_tag :query, params[:query], class: "form-control border-0", placeholder: "Find a book" %>
+              <%= button_tag class: "btn btn-secondary rounded-0" do %>
                 <i class="fa-solid fa-magnifying-glass"></i>
               <% end %>
             <% end %>
@@ -39,13 +38,10 @@
           </li>
         <% else %>
           <li class="nav-item ms-auto">
-            <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-outline-warning" %>
+            <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-danger text-light rounded-0 me-3 px-3" %>
           </li>
           <li class="nav-item">
-            <span class="nav-link">OR</span>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+            <%= link_to "Sign up", new_user_registration_path, class: "nav-link text-light text-decoration-underline" %>
           </li>
         <% end %>
       </ul>

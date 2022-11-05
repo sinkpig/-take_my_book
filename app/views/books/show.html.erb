@@ -3,24 +3,27 @@
     <i class="fa-solid fa-arrow-left-long"></i>
     Return
   <% end %>
-  <div class="d-md-flex justify-content-center">
-    <div class="flex-shrink-1">
-      <img src="https://source.unsplash.com/random/300x300/?<%= @book.genre %>" class="img-fluid d-block mx-auto" height="300px" width="300px">
-      <% if current_user.name == @book.user.name %>
+  <div class="row justify-content-center mb-3">
+    <div class="col-md-4">
+      <% if @book.photo.attached? %>
+        <%= cl_image_tag @book.photo.key, class: "img-fluid d-block mx-auto", height: "300px", width: "300px", crop: :fill %>
+      <% else %>
+        <%= image_tag "livro.jpeg", class: "img-fluid d-block mx-auto", height: "300px", width: "300px" %>
+      <% end %>
+      <% if current_user && current_user.name == @book.user.name %>
         <p class="d-block text-muted text-center">This book belongs to <span class="fw-bold">you</span></p>
       <% else %>
         <p class="d-block text-muted text-center">This book belongs to <span class="fw-bold"><%= @book.user.name %></span></p>
       <% end %>
     </div>
-    <div class="ps-md-5" style="width: 600px;">
+    <div class="col-md-5 mb-5 mb-md-0">
       <span class="badge rounded-pill text-bg-success text-white"><%= @book.genre.capitalize %></span>
       <h1><%= @book.title %>
         <span class="fs-5">(<%= @book.year %>)<span>
       </h1>
-      <%# mostrar a imagem do livro %>
-      <h5 class="mb-4">By
+      <p class="mb-4">By
         <span class="fw-bold"><%= @book.author.capitalize %></span>
-      </h5>
+      </p>
       <% if current_user == @book.user %>
         <%= link_to edit_book_path(@book), class: "btn btn-outline-secondary me-3" do %>
           <i class="fa-solid fa-pen-to-square me-2"></i>
@@ -45,11 +48,9 @@
         <% end %>
       <% end %>
     </div>
-  </div>
-
-  <div style="width: 100%; height: 600px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    <div class="col-md-9">
+      <h5>This book is sent from:</h5>
+      <div class="mx-auto" style="width: 100%; height: 300px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    </div>
   </div>
 </div>
