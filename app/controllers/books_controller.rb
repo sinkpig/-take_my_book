@@ -11,7 +11,6 @@ class BooksController < ApplicationController
       @books = Book.where(available: true)
                    .where.not(user: current_user)
     end
-
   end
 
   def show
