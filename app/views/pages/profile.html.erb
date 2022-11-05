@@ -2,6 +2,7 @@
   <h1 class="mb-3"><%= current_user.name %>'s Profile
     <span class="text-muted fs-5"> Not you? <%= link_to "Sign out", destroy_user_session_path, class: "text-warning" %></span>
   </h1>
+  
   <div class="row g-0 justify-content-center">
     <div class="col-lg-3 bg-white border-end">
       <div class="card border-0">
@@ -43,6 +44,7 @@
         </ul>
       </div>
     </div>
+
     <div class="col-lg-9 p-3 bg-white">
       <h3 class="mb-3">Your trades</h3>
       <% if @trades.count == 0 %>
@@ -54,6 +56,7 @@
           <% end %>
         </div>
       <% end %>
+
       <h3 class="mb-3">Your books
         <% if current_user.books.count > 0 %>
           <%= link_to "Offer another book", new_book_path, class: "btn btn-link text-warning" %>

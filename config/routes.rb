@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :books do
     resources :trades, only: [:new, :create]
+    patch :change_availability_to_true, on: :member
   end
 
   resources :trades, only: [:destroy, :index]
