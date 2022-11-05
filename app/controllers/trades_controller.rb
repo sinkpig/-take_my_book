@@ -15,7 +15,8 @@ class TradesController < ApplicationController
       redirect_to book_path(@book)
       # ou redirecionar para o index de trades deste usuario
     else
-      render "books/show", status: :unprocessable_entity
+      flash[:notice] = "msg qualquer"
+      render "books/show"
     end
   end
 
