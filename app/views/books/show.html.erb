@@ -58,22 +58,37 @@
         <% end %>
       <% end %>
     </div>
-    <div class="col-md-9">
-      <h5>This book is sent from:</h5>
+    <div class="col-md-9 mb-3">
+      <h5>This book is here:</h5>
       <div class="mx-auto" style="width: 100%; height: 300px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
     <div class="col-md-9">
       <div class="row justify-content-center">
-        <div class="col-6">
-          <% @reviews.each do |review| %>
-            <p><% review.rating %></p>
-            <p><% review.content %></p>
+        <div class="col-lg-8 col-md-6">
+          <h5>Reviews</h5>
+          <% if @book.reviews.count == 0 %>
+            <p>No reviews yet. Be the first to leave a review?</p>
+          <% end %>
+          <% @book.reviews.each do |review| %>
+            <div class="card w-100 mb-2 border-0 rounded-0 shadow-sm">
+              <div class="card-body py-2">
+                <p class="card-title fw-bold"><%= review.user.name %>
+                  <% review.rating.times do %>
+                    <i class="fa-solid fa-star text-info"></i>
+                  <% end %>
+                  <% (5 - review.rating).times do %>
+                    <i class="fa-regular fa-star text-info"></i>
+                  <% end %>
+                </p>
+                <p class="card-text"><%= review.content %></p>
+              </div>
+            </div>
           <% end %>
         </div>
-        <div class="col-6">
-          <h6>Leave a review</h6>
+        <div class="col-lg-4 col-md-6">
+          <h5>Leave a review</h5>
           <%= simple_form_for [@book, @review] do |f| %>
-            <%= f.input :rating %>
+            <%= f.input :rating, collection: (1..5).to_a, label: "Rate the book", input_html: {data: {controller: "star-rating"}} %>
             <%= f.input :content %>
             <%= f.submit "Submit", class: "btn btn-dark w-100 d-block" %>
           <% end %>

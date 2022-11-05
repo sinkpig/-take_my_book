@@ -1,25 +1,18 @@
 class ReviewsController < ApplicationController
-  before_action :find_book, only: %i[new create]
-
-  def new
-    @review = Review.new
-  end
-
   def create
     @review = Review.new(review_params)
+    @book = Book.find(params[:book_id])
     @review.book = @book
-    if @book.save
+    @review.user = current_user
+    if @review.save
       redirect_to book_path(@book)
     else
-      render :new, status: :unprocessable_entity
+      flash[:alert] = "Something went wrong."
+      render :new
     end
   end
 
   private
-
-  def find_book
-    @book = Book.find(params[:book_id])
-  end
 
   def review_params
     params.require(:review).permit(:rating, :content)
